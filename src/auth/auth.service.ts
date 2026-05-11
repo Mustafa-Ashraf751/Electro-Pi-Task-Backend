@@ -24,13 +24,7 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto) {
-    if (!loginDto.email && !loginDto.username) {
-      throw new UnauthorizedException('Provide email or username');
-    }
-    // Find user by whichever identifier was provided
-    const user = loginDto.email
-    ? await this.usersService.findByEmail(loginDto.email)
-    : await this.usersService.findByUsername(loginDto.username!);
+    const user = await this.usersService.findByUsername(loginDto.identifier) || await this.usersService.findByEmail(loginDto.identifier);
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
