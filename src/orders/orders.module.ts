@@ -9,5 +9,6 @@ import { AuthModule } from 'src/auth/auth.module';
   controllers: [OrdersController],
   providers: [OrdersService],
   imports: [MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]), AuthModule],
+  exports: [OrdersService],
 })
 export class OrdersModule {}

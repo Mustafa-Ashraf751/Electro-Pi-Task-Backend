@@ -31,7 +31,7 @@ export class Order {
 
   @Prop({
     type: String,
-    enum: ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled'],
+    enum: ['pending', 'preparing', 'on_the_way', 'delivered', 'cancelled'],
     default: 'pending',
   })
   status: string;
@@ -53,6 +53,9 @@ export class Order {
     city: string;
     zip: string;
   };
+
+  @Prop({ type: String, enum: ['pending', 'paid', 'failed'], default: 'pending' })
+  paymentStatus: string;
 
   @Prop({
     type: String,
